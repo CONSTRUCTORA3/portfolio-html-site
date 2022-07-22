@@ -1,0 +1,206 @@
+/*  2ND - Start building portfolio items (Master Styles)  --------------------------------------------------------------------------*/
+
+/* This will take the body of the html document and add a margin of zero px.*/
+body{
+
+    /*By default the body has a margin of 8px Mr. Hudgens believes, so this is how you get rid of this.  This will help our portfolio images bud up against the side of the page.*/
+margin: 0px;
+
+/*CSS Grid: 
+-has a lot of simularities to flex box.  
+-it is a tool built directly in to CSS.
+-it gives you the ability to align items.
+-there are differences between the grid and flex box.
+*/
+
+/*Rule of thumb:
+
+-Have layouts in grid
+
+-Build out small elements like the navbar using flex box
+
+-The entire application will use grid, I believe he just means the content in the body element of the website.
+*/
+}
+
+
+.container{
+    /*I want this container to use Grid.*/
+    display:grid;
+
+    /*I want you to create these template columns using 1 fr stands for fractional unit.  Now the entire layout will be considered as having columns eventhough you can't really see them.*/
+    /*Click inspect then click on the div with class container then go to the top of the inspect page and click the icon that has a blue square with a blue arrow in it then you will see dotted line around the About and Home links and around my name meaning this is one of the columns. Like flex box takes elements and separates them out, grid does the same thing. 1 fr means 100%, it means I want you to take up one fractional unit which means this column the nav bar should go end to end.  Like our portfolio items should go end to end.*/
+    grid-template-columns: 1fr;
+
+    
+}
+
+/*End build portfolio items (Master Styles)-----------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+/* 1ST- Start Navbar Code Styling Using Flex Box -----------------------------------------------------------------------------------*/
+
+/*Using flex box to align elements on the page in a manner that is straight forward than it use to be possible.*/
+
+.nav-wrapper{
+
+/*The display property with a value of flex moved my name from under the about link and put it right next to the Home link.*/
+    display: flex;
+
+    /*Justify-content used all the open space to put space between the Home link and my name.*/
+    justify-content:space-between; 
+    
+/* In this nav wrapper where I have my frontside and left side, there will be 38 px of space on the top, bottom, left and right side of my Home and About links and my name.  I used inspect to see this.*/
+    padding: 38px;
+}
+
+.left-side{
+
+    /*This is how you get you About link to move from under the Home link and it will now be on the right side of the Home link right next to each other.*/
+    display:flex;
+
+}
+
+
+/*This is how you traverse a tree: so the code will look at the nav wrapper then go to the left side then take any divs in the left side container so whatever styles I do here will be placed on those divs so it will target my Home and About links.*/
+
+.nav-wrapper > .left-side > div{
+
+    /*This margin will give space between my Home and About link because they are right next to each other.*/
+    margin-right:20px;
+
+    /*By default the font size is 1 em so if you do .9em it will take about     90% of 1 em and use that.  I really don't see where there was a change in the size of the font.*/
+    font-size: 0.9;
+
+    /*I can use HTML to do uppercase letters or I can use CSS to do the same using the text transform property.*/
+    text-transform:uppercase;
+
+}
+
+/*Now I am going to do style targeting my nav link wrapper.*/
+
+.nav-link-wrapper{
+
+    height:22 px;
+/*You will not see this transparent solid border because it will be made apparent here using the transition property to animate the border for 1/2 a second.*/
+    border-bottom: 1px solid transparent;
+/*This will help us see how animations work in CSS. The transition property will call whatever part you want to add the animation to.  I am going to animate the border bottom for 0.5s or 1/2 a second.*/
+    transition: border-bottom 0.5s;
+
+    /*You won't see anything yet, after using the three properties above.*/
+}
+
+/*This says inside of the nav-link-wrapper I want you to target the a element (The Home and About links).*/
+.nav-link-wrapper a{
+
+
+ color:#8a8a8a;  /*Light gray*/
+
+ /*Right now the Home and About links are using the basic HTML underline.  To get rid of the HTML underline I used the text-decoration property. Instead of using HTML's underline, you can use the border-bottom property in CSS to have a underline, see .nav-link-wrapper below.*/
+ text-decoration: none;
+ /*I am animating the color.  I am not seeing how?????????*/
+ transition: color 0.5s;
+}
+
+/*I want two hover states.  Use CSS to tell the browser when the hover state occurs change the styles.  Hover is a psuedo state.*/
+.nav-link-wrapper:hover{
+
+    /*When you put your mouse under the Home and About words where the underline would be, you will see the black bottom border appear and when you move the mouse the black border will disappear.*/
+border-bottom: 1px solid black;
+
+}
+
+.nav-link-wrapper a:hover{
+color:green; /* I changed the words Home and About from black to green to see this color is applying to these two words.*/
+}
+
+/*End of Nav Bar Coding Styling Using Flex Box -------------------------------------------------------------------------------------*/
+
+
+
+/*3RD - Start Portfolio styles ---------------------------------------------------------------------------------------------------*/
+
+.portfolio-items-wrapper{
+
+    display: grid; /*Using CSS grid*/
+
+    grid-template-columns: 1fr 1fr 1fr;/* This gives a three full sized columns.*/
+}
+
+.portfolio-item-wrapper{
+    position: relative;/*Gives you flexibility on how you position each one of the items inside of it.*/
+
+    /*You are going to have to force text and an image to sit on top of another image, like putting you mouse over an image and then another image and text appears.*/
+
+    /**/
+}
+
+.portfolio-img-background{
+
+     height: 350px;/* each one will be this tall.*/
+     width: 100%;/*width will ajust automatically here.*/
+    background-size: cover;/*I believe he said this allows the images to sit nicely next to each other.*/
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.img-text-wrapper{
+    position:absolute;/*You need position relative if you are going to have a position of absolute item nested inside of it.  We are forcing this element to go somewhere it does not usually go so that is why .portfolio-item-wrapper had to have a position of relative.  So it has to be a parent element with a position of relative.*/
+    top:0; /*I want this img-text-wrapper to be positioned at the very top wherever I want and inside of it all the elements are going to use flex box.*/
+    display:flex;/*Using flex box.  All the elements inside of this div .img-text-wrapper is going to use flex box.*/
+    flex-direction: column;
+    justify-content: center;/*I am centering these items from left to right.*/
+    align-items:center;/*aligns items top to bottom*/
+    height:100%;/*I want the items to take up the whole parent height so 100%.*/
+    text-align:center;/*I want to text inside to be centered.*/
+    padding-left:100px;
+    padding-right:100px;
+    /*Now that i used absolute styles and positionings now I have my images and text sitting on top of the background image.*/
+}
+
+/*Now style the logo image*/
+/*Two classes are being selected here, logo-wrapper and img and this is how the image is being selected to be styled.*/
+.logo-wrapper img{
+    width:50%;
+    margin-bottom:20px;
+/*Now this makes the logos all shrunk and unified on the webpage.  Now all the logos have the same exact size.*/
+}
+
+/*We are about to add the dark fade animation and the subtitle does not actually start off.  We want to make the subtitle invisible and animate it change its color and then have it appear later on.*/
+/*Need to be more specific with selector so either put another div inside the subtitle div and say .subtitle-1 to 12 or take    the class subtitle and make each .subtitle-1 and so on till I get to 12 so I can put the best text color for the words that will look easy to read for that background image and keep in mind we will use hover so the color of the words may be different I will have to see how the guy does this..*/
+
+/*3rd*/
+.img-text-wrapper .subtitle{
+    transitions:1s;/*1s makes this nice and slow.*/
+    font-weight:600;/*to fix the jump when you see the words fadding in and out use this.  Your subtitle words will fade in and out smoothly.  with out this here the font-weight will start at the normal font-weight and fade to the point where it reaches the font-weight blow at 600, this way your font-weight starts and finishes at 600 when the words fade in and out.*/
+    color: transparent;/*Your starting color will be transparent.*/
+    /*Now when I hover over the background image you can see the background image goes from having no words showing to having green words showing.*/
+
+    /*At this point we can add the javascript code.  You want to put javascript code at the bottom of the html file because you don't want javascript to run before the html page is loaded.*/
+}
+
+/*1st*/
+.img-text-wrapper:hover .subtitle{
+
+    font-weight: 600; /*How to make things bold.*/
+    color: lightseagreen; /*color for subtitle words.*/
+
+    /*The guy added .img-text-wrapper:hover to .subtitle here.  So the immediate parent container for the divs, logo-wrapper and subtitle have been added and given hover. Now your words for the subtitle only turns lightseagreen when you hover over the background images.*/
+}
+
+/*2nd*/
+/*How to darken the backgound image.*/
+.img-darken{
+    transition: 1s;/*Used for animation*/
+    filter: brightness(10%);
+    /*This will be our own special function by having javascript dynamically add and remove this class when someone is hoving over the background image.  This would be tricky to use CSS to do this but it sounds like it is easier to use javascript to do this.  The guy suggest if you want to use a feature like this to go with javascript.*/
+
+}
+
+
+/*End of Portfolio styles ----------------------------------------------------------------------------------------------------------*/
